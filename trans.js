@@ -90,15 +90,37 @@ export class TralaleroTralala {
         }).join('\n\n');
     }
 
-    generateWebComponent({ name, templatePath, stylesPath, properties, methods }) {
-        const html = fs.readFileSync(templatePath, 'utf8')
-        const css = fs.readFileSync(stylesPath, 'utf8')
-        
-        const propertiesCode = this.getProperties({properties});
-    
-        const methodsCode = this.getMethods({methods});
-        
-        console.log(methodsCode);
+    generateWebComponent({ name, templatePath = '', stylesPath = '', properties, methods }) {
+        let html = '';
+        let css = '';
+        let propertiesCode = '';
+        let methodsCode = '';
+
+        console.log('Los template paths:', templatePath);
+        console.log('Los styles paths:', stylesPath);
+        if(!(templatePath === ' ')){
+            console.log('Hay template paths:', templatePath);
+            html = fs.readFileSync(templatePath, 'utf8')
+        }
+
+        if(!(stylesPath === ' ')){
+            console.log('Hay styles paths:', stylesPath);
+            css = fs.readFileSync(stylesPath, 'utf8')
+        }
+
+        if(!(properties)){
+            console.log('Hay properties', properties)
+            propertiesCode = this.getProperties({properties});
+            console.log('Properties code:', propertiesCode);
+        }
+
+        if(!(methods)){
+            console.log('Hay methods', methods)
+            methodsCode = this.getMethods({methods});
+            console.log('Methods code:', methodsCode);  
+        }
+
+
     
         return `
     class ${name} extends HTMLElement {
@@ -149,5 +171,9 @@ export class TralaleroTralala {
             fs.writeFileSync(outputPath, componentCode);
             console.log(`Generated: ${outputPath}`);
         });
+    }
+
+    bindAttr(){
+        
     }
 }
