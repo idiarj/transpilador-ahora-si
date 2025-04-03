@@ -1,0 +1,11 @@
+@generate soundboard
+@template ./assets/soundboard.html
+@styles ./assets/soundboard.css
+@property favorite
+@property volume
+@property pitch
+@property speed
+@method playSound(soundId) { const sound = this.querySelector('[data-sound="\${soundId}"]'); if (sound) {sound.play();}}
+@method playSound(soundId) { const sound = this.querySelector('[data-sound="\${soundId}"]'); if (sound) {sound.play();}}
+@method playSound(soundId) { const sound = this.querySelector('[data-sound="\${soundId}"]'); if (sound) {sound.play();}}
+@method playSound(soundId) { const sound = this.querySelector('[data-sound="\${soundId}"]'); if (sound) {sound.play();}}
